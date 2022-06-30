@@ -101,26 +101,31 @@ class Library {
 class Student {
    constructor (name) {
       this.name = name;
-      this.marks = [];
+      this.marks = {};
+           
    }
    
    addMark (mark, subjectName) {
-      this.marks[subjectName] = [];
+      if (this.marks[subjectName] === undefined) {
+        this.marks[subjectName]=[];
+     } 
       if (mark > 0 && mark < 6) {
-         this.marks[subjectName].push(mark);
-      } else console.log("Ошибка, оценка должна быть числом от 1 до 5");
-      
-      
-           
-   }
+        this.marks[subjectName].push(mark); 
+     } else console.log("Ошибка, оценка должна быть числом от 1 до 5");           
+  }
+  
+  getAverageBySubject(subjectName) {
+     const sum = this.marks[subjectName].reduce((acc, number) => acc + number, 0);
+     const length = this.marks[subjectName].length;
+     let average = sum / length;
+     return average;
+  }
+  
+  getAverage() {
+   let totalMarks = Object.values(this.marks).flat()
+   const sum = totalMarks.reduce((acc, number) => acc + number, 0);
+   const length = totalMarks.length;
+   let average = sum / length;
+   return average;
+  }
 }
-const student = new Student("jktu gtnhjd");
-student.addMark(3, "algebra");
-      student.addMark(8, "algebra");
-      student.addMark(3, "geometry");
-      student.addMark(5, "algebra");
-     student.addMark(3, "math");
-      student.addMark(5, "bio");
-
-     
-
