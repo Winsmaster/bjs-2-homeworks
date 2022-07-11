@@ -28,8 +28,8 @@ class AlarmClock {
 
     getCurrentFormattedTime() {
         let now = new Date();
-        const hours = now.getHours();
-        const minutes = now.getMinutes();
+        const hours = now.getHours() < 10 ? `0${now.getHours()}` : `${now.getHours()}`;
+        const minutes = now.getMinutes() < 10 ? `0${now.getMinutes()}` : `${now.getMinutes()}`;
         let nowTime = `${hours}:${minutes}`;
         return nowTime;
     }
